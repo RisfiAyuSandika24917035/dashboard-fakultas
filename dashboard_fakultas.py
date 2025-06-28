@@ -41,19 +41,27 @@ lulusan = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
 st.line_chart(data=lulusan, x="Program Studi", y="Jumlah Lulusan")
 
 # === Waktu Tempuh Studi ===
-import altair as alt
+st.subheader("Rata-rata Waktu Tempuh Studi Mahasiswa")
 
-st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun)")
-
+# Konversi ke tahun desimal
 df_waktu['Waktu Tempuh (Tahun)'] = df_waktu['Rata-rata Tahun'] + (df_waktu['Rata-rata Bulan'] / 12)
 
-chart = alt.Chart(df_waktu).mark_bar().encode(
-    x=alt.X('Waktu Tempuh (Tahun):Q', title='Rata-rata Tahun'),
-    y=alt.Y('Program Studi:N', sort='-x'),
-    color=alt.Color('Jenjang:N', legend=alt.Legend(title="Jenjang"))
-).properties(width=700, height=400)
+# Tambahkan kolom keterangan dengan emoji
+def kategori_studi(x):
+    if x <= 3.5:
+        return "✅ Cepat"
+    elif 3.5 < x <= 4.5:
+        return "🕒 Wajar"
+    else:
+        return "⚠️ Lama"
 
-st.altair_chart(chart, use_container_width=True)
+df_waktu['Keterangan'] = df_waktu['Waktu Tempuh (Tahun)'].apply(kategori_studi)
+
+# Pilih kolom yang ditampilkan
+tabel = df_waktu[['Program Studi', 'Jenjang', 'Waktu Tempuh (Tahun)', 'Keterangan']]
+
+st.table(tabel)
+
 
 
 # === Status Akreditasi ===

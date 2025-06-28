@@ -43,14 +43,12 @@ st.line_chart(data=lulusan, x="Program Studi", y="Jumlah Lulusan")
 # === Waktu Tempuh Studi ===
 import altair as alt
 
-st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi")
+st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun)")
 
-# Hitung total waktu tempuh dalam bulan (untuk visualisasi)
-df_waktu['Total Bulan'] = df_waktu['Rata-rata Tahun'] * 12 + df_waktu['Rata-rata Bulan']
+df_waktu['Waktu Tempuh (Tahun)'] = df_waktu['Rata-rata Tahun'] + (df_waktu['Rata-rata Bulan'] / 12)
 
-# Buat horizontal bar chart
 chart = alt.Chart(df_waktu).mark_bar().encode(
-    x=alt.X('Total Bulan:Q', title='Total Waktu Tempuh (bulan)'),
+    x=alt.X('Waktu Tempuh (Tahun):Q', title='Rata-rata Tahun'),
     y=alt.Y('Program Studi:N', sort='-x'),
     color=alt.Color('Jenjang:N', legend=alt.Legend(title="Jenjang"))
 ).properties(width=700, height=400)

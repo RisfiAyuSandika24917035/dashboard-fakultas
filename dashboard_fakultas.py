@@ -41,28 +41,8 @@ lulusan = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
 st.line_chart(data=lulusan, x="Program Studi", y="Jumlah Lulusan")
 
 # === Waktu Tempuh Studi ===
-st.subheader("Rata-rata Waktu Tempuh Studi Mahasiswa")
-
-# Konversi ke tahun desimal
-df_waktu['Waktu Tempuh (Tahun)'] = df_waktu['Rata-rata Tahun'] + (df_waktu['Rata-rata Bulan'] / 12)
-
-# Tambahkan kolom keterangan dengan emoji
-def kategori_studi(x):
-    if x <= 3.5:
-        return "✅ Cepat"
-    elif 3.5 < x <= 4.5:
-        return "🕒 Wajar"
-    else:
-        return "⚠️ Lama"
-
-df_waktu['Keterangan'] = df_waktu['Waktu Tempuh (Tahun)'].apply(kategori_studi)
-
-# Pilih kolom yang ditampilkan
-tabel = df_waktu[['Program Studi', 'Jenjang', 'Waktu Tempuh (Tahun)', 'Keterangan']]
-
-st.table(tabel)
-
-
+st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")
+st.dataframe(df_waktu)
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")

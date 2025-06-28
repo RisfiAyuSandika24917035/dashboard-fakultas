@@ -23,7 +23,7 @@ df_lulusan = pd.read_excel(xlsx, "Lulusan per Semester")
 df_waktu = pd.read_excel(xlsx, "Waktu Tempuh Studi")
 df_akreditasi = pd.read_excel(xlsx, "Status Akreditasi")
 df_prodi = pd.read_excel(xlsx, "Prodi Aktif")
-df_distribusi = pd.read_excel(xlsx, "Jumlah Mahasiswa")
+df_distribusi = pd.read_excel(xlsx, "Distribusi Mahasiswa")
 df_kuesioner = pd.read_excel(xlsx, "Kuesioner Dosen")
 
 # Sidebar: filter tahun

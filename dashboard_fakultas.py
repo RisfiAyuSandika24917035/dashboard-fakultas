@@ -54,8 +54,8 @@ st.bar_chart(data=df_prodi, x="Jenjang", y="Jumlah Prodi Aktif")
 
 import plotly.express as px
 
-# === Distribusi Mahasiswa ===
-st.subheader("Distribusi Mahasiswa per Jenjang dan Tahun")
+# === Jumlah Mahasiswa ===
+st.subheader("Jumlah Mahasiswa per Jenjang dan Tahun")
 
 distribusi = df_distribusi[df_distribusi["Tahun"] == tahun_pilih]
 

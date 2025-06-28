@@ -65,8 +65,27 @@ fig_lulusan = px.bar(
 st.plotly_chart(fig_lulusan, use_container_width=True)
 
 # === Waktu Tempuh Studi ===
-st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")
-st.dataframe(df_waktu)
+st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun)")
+
+# Hitung total tahun sebagai angka desimal
+df_waktu["Total Tahun"] = df_waktu["Rata-rata Tahun"] + (df_waktu["Rata-rata Bulan"] / 12)
+
+# Sort agar lebih enak dibaca (terpendek ke terlama)
+df_waktu_sorted = df_waktu.sort_values("Total Tahun", ascending=True)
+
+# Buat visualisasi horizontal bar chart
+fig_waktu = px.bar(
+    df_waktu_sorted,
+    x="Total Tahun",
+    y="Program Studi",
+    orientation="h",
+    color="Total Tahun",
+    color_continuous_scale="Blues",
+    title="Rata-rata Waktu Tempuh Studi (Tahun Desimal)"
+)
+
+st.plotly_chart(fig_waktu, use_container_width=True)
+
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")

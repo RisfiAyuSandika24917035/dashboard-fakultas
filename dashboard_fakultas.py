@@ -65,34 +65,8 @@ fig_lulusan = px.bar(
 st.plotly_chart(fig_lulusan, use_container_width=True)
 
 # === Waktu Tempuh Studi ===
-st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun Desimal)")
-
-df_waktu["Rata-rata Bulan"] = (
-    df_waktu["Rata-rata Bulan"]
-    .astype(str)
-    .str.replace(",", ".")
-)
-
-df_waktu["Rata-rata Bulan"] = pd.to_numeric(df_waktu["Rata-rata Bulan"], errors="coerce")
-
-df_waktu["Total Tahun"] = df_waktu["Rata-rata Tahun"] + (df_waktu["Rata-rata Bulan"] / 12)
-
-df_waktu["Label Prodi"] = df_waktu["Jenjang"] + " - " + df_waktu["Program Studi"]
-
-df_waktu_sorted = df_waktu.sort_values("Total Tahun", ascending=True)
-
-fig_waktu = px.bar(
-    df_waktu_sorted,
-    x="Total Tahun",
-    y="Label Prodi",
-    orientation="h",
-    color="Total Tahun",
-    color_continuous_scale="Blues",
-    title="Rata-rata Waktu Tempuh Studi Mahasiswa per Prodi"
-)
-
-st.plotly_chart(fig_waktu, use_container_width=True)
-
+st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")
+st.dataframe(df_waktu)
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")

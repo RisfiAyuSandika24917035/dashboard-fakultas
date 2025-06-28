@@ -45,8 +45,22 @@ st.bar_chart(data=aktif, x="Program Studi", y="Jumlah Mahasiswa")
 
 # === Lulusan per Semester ===
 st.subheader("Jumlah Lulusan per Semester")
+
 lulusan = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
-st.line_chart(data=lulusan, x="Program Studi", y="Jumlah Lulusan")
+if prodi_pilih != "Semua":
+    lulusan = lulusan[lulusan["Program Studi"] == prodi_pilih]
+
+# Buat grouped bar chart dengan Plotly
+fig_lulusan = px.bar(
+    lulusan,
+    x="Program Studi",
+    y="Jumlah Lulusan",
+    color="Semester",
+    barmode="group",
+    title=f"Jumlah Lulusan Semester Ganjil/Genap - Tahun {tahun_pilih}"
+)
+
+st.plotly_chart(fig_lulusan, use_container_width=True)
 
 # === Waktu Tempuh Studi ===
 st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")

@@ -38,6 +38,9 @@ prodi_pilih = st.sidebar.selectbox("Pilih Program Studi", ["Semua"] + prodi_opsi
 st.subheader("Jumlah Mahasiswa Aktif per Program Studi")
 aktif = df_aktif[df_aktif["Tahun"] == tahun_pilih]
 st.bar_chart(data=aktif, x="Program Studi", y="Jumlah Mahasiswa")
+aktif = df_aktif[df_aktif["Tahun"] == tahun_pilih]
+if prodi_pilih != "Semua":
+    aktif = aktif[aktif["Program Studi"] == prodi_pilih]
 
 # === Lulusan per Semester ===
 st.subheader("Jumlah Lulusan per Semester")

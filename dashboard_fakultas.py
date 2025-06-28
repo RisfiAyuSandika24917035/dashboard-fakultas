@@ -41,8 +41,22 @@ lulusan = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
 st.line_chart(data=lulusan, x="Program Studi", y="Jumlah Lulusan")
 
 # === Waktu Tempuh Studi ===
-st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")
-st.dataframe(df_waktu)
+import altair as alt
+
+st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi")
+
+# Hitung total waktu tempuh dalam bulan (untuk visualisasi)
+df_waktu['Total Bulan'] = df_waktu['Rata-rata Tahun'] * 12 + df_waktu['Rata-rata Bulan']
+
+# Buat horizontal bar chart
+chart = alt.Chart(df_waktu).mark_bar().encode(
+    x=alt.X('Total Bulan:Q', title='Total Waktu Tempuh (bulan)'),
+    y=alt.Y('Program Studi:N', sort='-x'),
+    color=alt.Color('Jenjang:N', legend=alt.Legend(title="Jenjang"))
+).properties(width=700, height=400)
+
+st.altair_chart(chart, use_container_width=True)
+
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")

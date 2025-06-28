@@ -23,14 +23,14 @@ df_lulusan = pd.read_excel(xlsx, "Lulusan per Semester")
 df_waktu = pd.read_excel(xlsx, "Waktu Tempuh Studi")
 df_akreditasi = pd.read_excel(xlsx, "Status Akreditasi")
 df_prodi = pd.read_excel(xlsx, "Prodi Aktif")
-df_distribusi = pd.read_excel(xlsx, "Distribusi Mahasiswa")
+df_distribusi = pd.read_excel(xlsx, "Jumlah Mahasiswa")
 df_kuesioner = pd.read_excel(xlsx, "Kuesioner Dosen")
 
 # Sidebar: filter tahun
 tahun_opsi = sorted(df_aktif["Tahun"].dropna().unique())
 tahun_pilih = st.sidebar.selectbox("Pilih Tahun", tahun_opsi)
 
-# === Mahasiswa Aktif ===
+# === Jumlah Mahasiswa Aktif ===
 st.subheader("Jumlah Mahasiswa Aktif per Program Studi")
 aktif = df_aktif[df_aktif["Tahun"] == tahun_pilih]
 st.bar_chart(data=aktif, x="Program Studi", y="Jumlah Mahasiswa")

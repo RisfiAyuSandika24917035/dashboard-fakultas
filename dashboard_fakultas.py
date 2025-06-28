@@ -52,10 +52,22 @@ st.dataframe(df_akreditasi)
 st.subheader("Jumlah Program Studi Aktif per Jenjang")
 st.bar_chart(data=df_prodi, x="Jenjang", y="Jumlah Prodi Aktif")
 
+import plotly.express as px
+
 # === Distribusi Mahasiswa ===
 st.subheader("Distribusi Mahasiswa per Jenjang dan Tahun")
+
 distribusi = df_distribusi[df_distribusi["Tahun"] == tahun_pilih]
-st.bar_chart(data=distribusi, x="Jenjang", y="Jumlah Mahasiswa")
+
+fig_pie = px.pie(
+    distribusi,
+    names="Jenjang",
+    values="Jumlah Mahasiswa",
+    title=f"Distribusi Mahasiswa Tahun {tahun_pilih}",
+    hole=0.4  # jika ingin tampil seperti donut chart
+)
+
+st.plotly_chart(fig_pie, use_container_width=True)
 
 # === Kuesioner Dosen ===
 st.subheader("Rata-rata Skor Penilaian Dosen oleh Mahasiswa")

@@ -69,9 +69,24 @@ fig_pie = px.pie(
 
 st.plotly_chart(fig_pie, use_container_width=True)
 
-# === Kuesioner Dosen ===
+import altair as alt
+
 st.subheader("Rata-rata Skor Penilaian Dosen oleh Mahasiswa")
-kues = df_kuesioner[df_kuesioner["Tahun"] == tahun_pilih]
-st.bar_chart(data=kues, x="Program Studi", y="Rata-rata Skor Penilaian Dosen (1-5)")
+
+# Filter berdasarkan tahun dan pastikan skor numerik
+kues = df_kuesioner[df_kuesioner["Tahun"] == tahun_pilih].copy()
+kues["Rata-rata Skor Penilaian Dosen (1-5)"] = (
+    kues["Rata-rata Skor Penilaian Dosen (1-5)"]
+    .astype(str).str.replace(",", ".").astype(float)
+)
+
+# Bar chart horizontal dengan skala 1-5
+chart = alt.Chart(kues).mark_bar().encode(
+    x=alt.X("Rata-rata Skor Penilaian Dosen (1-5):Q", scale=alt.Scale(domain=[1, 5])),
+    y=alt.Y("Program Studi:N", sort='-x')
+).properties(width=700)
+
+st.altair_chart(chart, use_container_width=True)
+
 
 st.caption("Sumber data: Simulasi internal")

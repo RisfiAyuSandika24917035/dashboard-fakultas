@@ -46,9 +46,6 @@ st.bar_chart(data=aktif, x="Program Studi", y="Jumlah Mahasiswa")
 # === Lulusan per Semester ===
 st.subheader("Jumlah Lulusan per Semester")
 lulusan = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
-if prodi_pilih != "Semua":
-    lulusan = lulusan[lulusan["Program Studi"] == prodi_pilih]
-
 st.line_chart(data=lulusan, x="Program Studi", y="Jumlah Lulusan")
 
 # === Waktu Tempuh Studi ===

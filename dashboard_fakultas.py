@@ -60,6 +60,6 @@ st.bar_chart(data=distribusi, x="Jenjang", y="Jumlah Mahasiswa")
 # === Kuesioner Dosen ===
 st.subheader("Rata-rata Skor Penilaian Dosen oleh Mahasiswa")
 kues = df_kuesioner[df_kuesioner["Tahun"] == tahun_pilih]
-st.bar_chart(data=kues, x="Program Studi", y="Rata-rata Skor Penilaian Dosen (1–5)")
+st.bar_chart(data=kues, x="Program Studi", y="Rata-rata Skor Penilaian Dosen (1-5)")
 
 st.caption("Sumber data: Simulasi internal")

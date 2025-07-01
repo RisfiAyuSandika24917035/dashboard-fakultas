@@ -116,7 +116,10 @@ st.plotly_chart(fig_waktu, use_container_width=True)
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")
-st.dataframe(df_akreditasi.reset_index(drop=True).rename_axis("No").reset_index())
+df_akreditasi_display = df_akreditasi.copy()
+df_akreditasi_display.index = range(1, len(df_akreditasi_display) + 1)
+df_akreditasi_display.index.name = "No"
+st.dataframe(df_akreditasi_display)
 
 # === Jumlah Prodi Aktif ===
 st.subheader("Jumlah Program Studi Aktif per Jenjang")

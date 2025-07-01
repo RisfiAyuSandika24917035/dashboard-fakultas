@@ -36,10 +36,10 @@ tahun_pilih = st.sidebar.selectbox("Pilih Tahun", tahun_opsi)
 prodi_opsi = sorted(df_aktif["Program Studi"].dropna().unique())
 prodi_pilih = st.sidebar.selectbox("Pilih Program Studi", ["Semua"] + prodi_opsi)
 
-# === KPI Boxes ===
-st.markdown("## Ringkasan Data")
+# === Box ===
+st.markdown("## Data")
 
-# Siapkan tahun sebelumnya untuk perbandingan
+# tahun sebelumnya
 tahun_sebelumnya = tahun_pilih - 1
 
 col1, col2, col3 = st.columns(3)

@@ -96,11 +96,7 @@ st.plotly_chart(fig_lulusan, use_container_width=True)
 
 # === Waktu Tempuh Studi ===
 st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")
-df_waktu_filtered = df_waktu[df_waktu["Tahun"] == tahun_pilih]
-if prodi_pilih != "Semua":
-    df_waktu_filtered = df_waktu_filtered[df_waktu_filtered["Program Studi"] == prodi_pilih]
-
-st.dataframe(df_waktu_filtered)
+st.dataframe(df_waktu)
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")

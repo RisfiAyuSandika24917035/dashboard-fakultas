@@ -124,7 +124,7 @@ fig_pie = px.pie(
 st.plotly_chart(fig_pie, use_container_width=True)
 
 # === Kuesioner Dosen ===
-st.subheader("Rata-rata Skor Penilaian Dosen oleh Mahasiswa")
+st.subheader("Skor Penilaian Dosen oleh Mahasiswa")
 df_kuesioner.columns = df_kuesioner.columns.str.strip()
 kues = df_kuesioner[df_kuesioner["Tahun"] == tahun_pilih]
 if prodi_pilih != "Semua":

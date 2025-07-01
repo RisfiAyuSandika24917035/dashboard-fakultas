@@ -32,10 +32,6 @@ df_kuesioner = pd.read_excel(xlsx, "Kuesioner Dosen")
 tahun_opsi = sorted(df_aktif["Tahun"].dropna().unique())
 tahun_pilih = st.sidebar.selectbox("Pilih Tahun", tahun_opsi)
 
-# Sidebar: filter prodi
-prodi_opsi = sorted(df_aktif["Program Studi"].dropna().unique())
-prodi_pilih = st.sidebar.selectbox("Pilih Program Studi", ["Semua"] + prodi_opsi)
-
 # === KPI Boxes ===
 st.markdown("## Ringkasan Data")
 

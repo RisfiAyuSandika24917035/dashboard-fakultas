@@ -95,8 +95,24 @@ fig_lulusan = px.bar(
 st.plotly_chart(fig_lulusan, use_container_width=True)
 
 # === Waktu Tempuh Studi ===
-st.subheader("Rata-rata Waktu Tempuh Studi (Tahun)")
-st.dataframe(df_waktu)
+st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi")
+
+df_waktu["Rata-rata Total Tahun"] = df_waktu["Rata-rata Tahun"] + (df_waktu["Rata-rata Bulan"] / 12)
+
+df_waktu_filtered = df_waktu.copy()
+if prodi_pilih != "Semua":
+    df_waktu_filtered = df_waktu_filtered[df_waktu_filtered["Program Studi"] == prodi_pilih]
+    
+fig_waktu = px.bar(
+    df_waktu_filtered,
+    x="Rata-rata Total Tahun",
+    y="Program Studi",
+    orientation='h',
+    title="Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun)",
+    labels={"Rata-rata Total Tahun": "Tahun"}
+)
+
+st.plotly_chart(fig_waktu, use_container_width=True)
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")

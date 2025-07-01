@@ -12,7 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-st.title("Dashboard  Fakultas Sains dan Teknologi Universitas Kartama")
+st.title("Dashboard Fakultas Sains dan Teknologi Universitas Kartama")
 
 # Excel
 xlsx = pd.ExcelFile("data_dashboard.xlsx")

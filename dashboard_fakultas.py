@@ -12,6 +12,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+# ✅ HARUS di paling atas sebelum komponen visual lain
+st.set_page_config(layout="wide")
+
+# ✅ Baru CSS custom-nya
 st.markdown(
     """
     <style>
@@ -28,7 +32,7 @@ st.markdown(
 
     /* Ubah warna judul */
     h1, h2, h3, h4 {
-        color: #FACC15; /* Kuning pastel */
+        color: #FACC15;
     }
 
     /* Gaya teks dataframe (opsional) */
@@ -41,8 +45,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.set_page_config(layout="wide")
-st.title("Dashboard  Fakultas Sains dan Teknologi Universitas Kartama")
+# ✅ Baru komponen lainnya
+st.title("Dashboard Fakultas Sains dan Teknologi Universitas Kartama")
 
 # Excel
 xlsx = pd.ExcelFile("data_dashboard.xlsx")

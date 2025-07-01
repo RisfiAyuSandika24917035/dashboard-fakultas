@@ -16,10 +16,10 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 st.title("Dashboard  Fakultas Sains dan Teknologi Universitas Kartama")
 
-# Load Excel
+# Excel
 xlsx = pd.ExcelFile("data_dashboard.xlsx")
 
-# Baca semua sheet
+# Semua sheet
 df_aktif = pd.read_excel(xlsx, "Mahasiswa Aktif")
 df_lulusan = pd.read_excel(xlsx, "Lulusan per Semester")
 df_waktu = pd.read_excel(xlsx, "Waktu Tempuh Studi")
@@ -81,8 +81,7 @@ st.subheader("Jumlah Lulusan per Semester")
 lulusan = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
 if prodi_pilih != "Semua":
     lulusan = lulusan[lulusan["Program Studi"] == prodi_pilih]
-
-# Buat grouped bar chart dengan Plotly
+    
 fig_lulusan = px.bar(
     lulusan,
     x="Program Studi",

@@ -14,7 +14,7 @@ import plotly.express as px
 
 
 st.set_page_config(layout="wide")
-st.title("Dashboard Fakultas Universitas")
+st.title("Dashboard  Fakultas Sains dan Teknologi Universitas Kartama")
 
 # Load Excel
 xlsx = pd.ExcelFile("data_dashboard.xlsx")

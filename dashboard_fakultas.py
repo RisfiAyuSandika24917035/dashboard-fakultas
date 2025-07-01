@@ -38,21 +38,33 @@ prodi_pilih = st.sidebar.selectbox("Pilih Program Studi", ["Semua"] + prodi_opsi
 
 # === KPI Boxes ===
 st.markdown("## Ringkasan Data")
+
+# Siapkan tahun sebelumnya untuk perbandingan
+tahun_sebelumnya = tahun_pilih - 1
+
 col1, col2, col3 = st.columns(3)
 
-# Total Mahasiswa Aktif
-aktif_kpi = df_aktif[df_aktif["Tahun"] == tahun_pilih]
-total_mhs = aktif_kpi["Jumlah Mahasiswa"].sum()
-col1.metric("Mahasiswa Aktif", f"{total_mhs:,}")
+# --- Mahasiswa Aktif ---
+aktif_now = df_aktif[df_aktif["Tahun"] == tahun_pilih]["Jumlah Mahasiswa"].sum()
+aktif_prev = df_aktif[df_aktif["Tahun"] == tahun_sebelumnya]["Jumlah Mahasiswa"].sum()
+col1.metric(
+    label="Mahasiswa Aktif",
+    value=f"{aktif_now:,}",
+    delta=f"{aktif_now - aktif_prev:,}" if not pd.isna(aktif_prev) else "Data N/A"
+)
 
-# Total Lulusan
-lulusan_kpi = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
-total_lulusan = lulusan_kpi["Jumlah Lulusan"].sum()
-col2.metric("Lulusan Tahun Ini", f"{total_lulusan:,}")
+# --- Lulusan ---
+lulusan_now = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]["Jumlah Lulusan"].sum()
+lulusan_prev = df_lulusan[df_lulusan["Tahun"] == tahun_sebelumnya]["Jumlah Lulusan"].sum()
+col2.metric(
+    label="Lulusan Tahun Ini",
+    value=f"{lulusan_now:,}",
+    delta=f"{lulusan_now - lulusan_prev:,}" if not pd.isna(lulusan_prev) else "Data N/A"
+)
 
-# Total Prodi Aktif
-total_prodi = df_prodi["Jumlah Prodi Aktif"].sum()
-col3.metric("Program Studi Aktif", total_prodi)
+# --- Prodi Aktif ---
+total_prodi_now = df_prodi["Jumlah Prodi Aktif"].sum()  # anggap tetap (jika tidak per tahun)
+col3.metric("Program Studi Aktif", total_prodi_now)
 
 # === Jumlah Mahasiswa Aktif ===
 st.subheader("Jumlah Mahasiswa Aktif per Program Studi")

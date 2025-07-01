@@ -116,7 +116,7 @@ st.plotly_chart(fig_waktu, use_container_width=True)
 
 # === Status Akreditasi ===
 st.subheader("Status Akreditasi Program Studi")
-st.dataframe(df_akreditasi)
+st.dataframe(df_akreditasi.reset_index(drop=True).rename_axis("No").reset_index())
 
 # === Jumlah Prodi Aktif ===
 st.subheader("Jumlah Program Studi Aktif per Jenjang")
@@ -134,7 +134,7 @@ fig_pie = px.pie(
     names="Jenjang",
     values="Jumlah Mahasiswa",
     title=f"Distribusi Mahasiswa Tahun {tahun_pilih}",
-    hole=0.4  # jika ingin tampil seperti donut chart
+    hole=0.4
 )
 
 st.plotly_chart(fig_pie, use_container_width=True)

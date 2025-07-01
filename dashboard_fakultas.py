@@ -94,23 +94,23 @@ fig_lulusan = px.bar(
 
 st.plotly_chart(fig_lulusan, use_container_width=True)
 
-# === Waktu Tempuh Studi ===
-st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi")
+# === Rata-rata Waktu Tempuh Studi ===
+st.subheader("Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun)")
 
-df_waktu["Rata-rata Total Tahun"] = df_waktu["Rata-rata Tahun"] + (df_waktu["Rata-rata Bulan"] / 12)
-
-df_waktu_filtered = df_waktu.copy()
+df_waktu_filtered = df_waktu[df_waktu["Tahun"] == tahun_pilih]
 if prodi_pilih != "Semua":
     df_waktu_filtered = df_waktu_filtered[df_waktu_filtered["Program Studi"] == prodi_pilih]
-    
+
 fig_waktu = px.bar(
     df_waktu_filtered,
-    x="Rata-rata Total Tahun",
+    x="Rata-rata Waktu Tempuh (Tahun)",
     y="Program Studi",
-    orientation='h',
+    orientation="h",
     title="Rata-rata Waktu Tempuh Studi per Program Studi (dalam Tahun)",
-    labels={"Rata-rata Total Tahun": "Tahun"}
+    color_discrete_sequence=["skyblue"]
 )
+
+fig_waktu.update_layout(xaxis_range=[0, 6])  # misalnya maksimal 6 tahun
 
 st.plotly_chart(fig_waktu, use_container_width=True)
 

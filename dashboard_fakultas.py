@@ -36,6 +36,24 @@ tahun_pilih = st.sidebar.selectbox("Pilih Tahun", tahun_opsi)
 prodi_opsi = sorted(df_aktif["Program Studi"].dropna().unique())
 prodi_pilih = st.sidebar.selectbox("Pilih Program Studi", ["Semua"] + prodi_opsi)
 
+# === KPI Boxes ===
+st.markdown("## Ringkasan Data")
+col1, col2, col3 = st.columns(3)
+
+# Total Mahasiswa Aktif
+aktif_kpi = df_aktif[df_aktif["Tahun"] == tahun_pilih]
+total_mhs = aktif_kpi["Jumlah Mahasiswa"].sum()
+col1.metric("Mahasiswa Aktif", f"{total_mhs:,}")
+
+# Total Lulusan
+lulusan_kpi = df_lulusan[df_lulusan["Tahun"] == tahun_pilih]
+total_lulusan = lulusan_kpi["Jumlah Lulusan"].sum()
+col2.metric("Lulusan Tahun Ini", f"{total_lulusan:,}")
+
+# Total Prodi Aktif
+total_prodi = df_prodi["Jumlah Prodi Aktif"].sum()
+col3.metric("Program Studi Aktif", total_prodi)
+
 # === Jumlah Mahasiswa Aktif ===
 st.subheader("Jumlah Mahasiswa Aktif per Program Studi")
 

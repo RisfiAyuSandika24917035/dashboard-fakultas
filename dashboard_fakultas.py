@@ -12,41 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-# ✅ HARUS di paling atas sebelum komponen visual lain
-st.set_page_config(layout="wide")
-
-# ✅ Baru CSS custom-nya
-st.markdown(
-    """
-    <style>
-    /* Ubah warna latar belakang utama */
-    .stApp {
-        background-color: #0e1117;
-        color: #ffffff;
-    }
-
-    /* Ubah warna sidebar */
-    [data-testid="stSidebar"] {
-        background-color: #1c1f26;
-    }
-
-    /* Ubah warna judul */
-    h1, h2, h3, h4 {
-        color: #FACC15;
-    }
-
-    /* Gaya teks dataframe (opsional) */
-    .css-1d391kg {
-        background-color: #20232a;
-        color: #ffffff;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# ✅ Baru komponen lainnya
-st.title("Dashboard Fakultas Sains dan Teknologi Universitas Kartama")
+st.title("Dashboard  Fakultas Sains dan Teknologi Universitas Kartama")
 
 # Excel
 xlsx = pd.ExcelFile("data_dashboard.xlsx")

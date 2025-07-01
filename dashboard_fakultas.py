@@ -121,8 +121,11 @@ st.plotly_chart(fig_pie, use_container_width=True)
 
 # === Kuesioner Dosen ===
 st.subheader("Rata-rata Skor Penilaian Dosen oleh Mahasiswa")
+df_kuesioner.columns = df_kuesioner.columns.str.strip()
 kues = df_kuesioner[df_kuesioner["Tahun"] == tahun_pilih]
-st.bar_chart(data=kues, x="Program Studi", y="Rata-rata Skor Penilaian Dosen (1-5)")
+if prodi_pilih != "Semua":
+    kues = kues[kues["Program Studi"] == prodi_pilih]
+st.bar_chart(data=kues, x="Program Studi", y="Rata-rata Skor Penilaian Dosen (1-10)")
 
 
 st.caption("Sumber data: Simulasi internal")
